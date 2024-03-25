@@ -11,7 +11,7 @@
         },
         "ignored-players": ["firefox"],
         "ignored-players": ["brave"],
-        "max-length": 1000,
+        "max-length": 50,
         "interval": 1
     },
 
