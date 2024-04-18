@@ -25,8 +25,14 @@ if pkg_installed sddm; then
         read -p " :: Enter option number : " sddmopt
 
         case $sddmopt in
+<<<<<<< HEAD
         1) sddmtheme="Candy" ;;
         *) sddmtheme="Corners" ;;
+=======
+        1) sddmtheme="Candy";;
+        *) sddmtheme="Corners";;
+        3) sddmtheme="HTB";;
+>>>>>>> Testing
         esac
 
         sudo tar -xzf ${CloneDir}/Source/arcs/Sddm_${sddmtheme}.tar.gz -C /usr/share/sddm/themes/

@@ -9,8 +9,9 @@
         "status-icons": {
             "paused": "⏸"
         },
-        // "ignored-players": ["firefox"]
-        "max-length": 1000,
+        "ignored-players": ["firefox"],
+        "ignored-players": ["brave"],
+        "max-length": 50,
         "interval": 1
     },
 

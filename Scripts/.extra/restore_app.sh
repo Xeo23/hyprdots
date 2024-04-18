@@ -26,6 +26,7 @@ sudo sed -i "/^Icon=/c\Icon=spectacle" /usr/share/applications/swappy.desktop
 
 #// firefox
 
+<<<<<<< HEAD
 if pkg_installed firefox; then
     FoxRel=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -1)
 
@@ -47,4 +48,51 @@ if pkg_installed firefox; then
         firefox -profile "${FoxRel}" "${fext}" &> /dev/null &
     done
 fi
+=======
+
+# spotify
+if pkg_installed spotify && pkg_installed spicetify-cli
+    then
+    if [ ! -w /opt/spotify ] || [ ! -w /opt/spotify/Apps ]; then
+        sudo chmod a+wr /opt/spotify
+        sudo chmod a+wr /opt/spotify/Apps -R
+    fi
+
+    spicetify &> /dev/null
+    mkdir -p ~/.config/spotify
+    touch ~/.config/spotify/prefs
+    sptfyConf=$(spicetify -c)
+    sed -i "/^prefs_path/ s+=.*$+= $HOME/.config/spotify/prefs+g" "${sptfyConf}"
+    tar -xzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
+    spicetify backup apply
+    spicetify config current_theme Sleek
+    spicetify config color_scheme Wallbash
+    spicetify apply
+fi
+
+
+# firefox
+# if pkg_installed firefox
+#     then
+#     FoxRel=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -1)
+#
+#     if [ -z "${FoxRel}" ] ; then
+#         firefox &> /dev/null &
+#         sleep 1
+#         FoxRel=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -1)
+#     else
+#         BkpDir="${HOME}/.config/cfg_backups/$(date +'%y%m%d_%Hh%Mm%Ss')_apps"
+#         mkdir -p "${BkpDir}"
+#         cp -r ~/.mozilla/firefox "${BkpDir}"
+#     fi
+#
+#     tar -xzf ${CloneDir}/Source/arcs/Firefox_UserConfig.tar.gz -C "${FoxRel}"
+#     tar -xzf ${CloneDir}/Source/arcs/Firefox_Extensions.tar.gz -C ~/.mozilla/
+#
+#     find ~/.mozilla/extensions -maxdepth 1 -type f -name "*.xpi" | while read fext
+#     do
+#         firefox -profile "${FoxRel}" "${fext}" &> /dev/null &
+#     done
+# fi
+>>>>>>> Testing
 
